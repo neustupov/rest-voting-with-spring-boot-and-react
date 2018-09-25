@@ -3,32 +3,37 @@ package ru.neustupov.restvotingwithspringbootandreact.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User extends AbstractNamedEntity{
 
-    @Id
-    @GeneratedValue
-    private Integer id;
+    @Email
+    @Size(max = 100)
+    @NotNull
+    private String email;
 
     @NotBlank
-    private String name;
-
-
-    private String email;
+    @Size(min = 5, max = 100)
     private String password;
-    private Date registered;
-    private boolean enabled;
+
+    @NotNull
+    private Date registered = new Date();
+
+    @NotNull
+    private boolean enabled = true;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Vote> votes;
 }
