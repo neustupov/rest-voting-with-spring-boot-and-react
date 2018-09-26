@@ -16,8 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
-public class User extends AbstractNamedEntity{
+class AppUser extends AbstractNamedEntity{
 
     @Email
     @Size(max = 100)

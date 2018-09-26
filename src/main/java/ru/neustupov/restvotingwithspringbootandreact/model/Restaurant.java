@@ -11,7 +11,6 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "restaurants")
 public class Restaurant extends AbstractNamedEntity{
 
     @OneToMany(fetch = FetchType.LAZY)

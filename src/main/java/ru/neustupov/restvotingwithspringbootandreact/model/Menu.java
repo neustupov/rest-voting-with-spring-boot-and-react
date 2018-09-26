@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
@@ -15,8 +14,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "menus")
-public class Menu extends AbstractEntity{
+class Menu extends AbstractEntity{
 
     @NotNull
     private Date addDate;
