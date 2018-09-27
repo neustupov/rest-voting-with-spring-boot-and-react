@@ -9,6 +9,8 @@ import javax.validation.constraints.Size;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 @MappedSuperclass
 class AbstractNamedEntity extends AbstractEntity{
 
