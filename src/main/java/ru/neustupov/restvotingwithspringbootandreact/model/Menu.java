@@ -1,6 +1,5 @@
 package ru.neustupov.restvotingwithspringbootandreact.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,7 +24,6 @@ public class Menu extends AbstractEntity{
     private Date addDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonManagedReference
     private Restaurant restaurant;
 
     @OneToMany(fetch = FetchType.LAZY)
