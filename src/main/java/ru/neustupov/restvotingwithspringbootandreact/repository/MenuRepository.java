@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface MenuRepository extends JpaRepository<Menu, Long> {
 
-    @Query("SELECT DISTINCT m FROM Menu m WHERE m.restaurant.id=:restId AND m.addDate=:currDate")
+    @Query("SELECT DISTINCT m FROM Menu m WHERE m.restaurant.id=:restId AND m.date=:currDate")
     List<Menu> findOne(@Param("restId") int restId);
 }

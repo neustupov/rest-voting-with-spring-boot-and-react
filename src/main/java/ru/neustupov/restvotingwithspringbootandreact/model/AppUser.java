@@ -18,6 +18,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "app_user",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
 public class AppUser extends AbstractNamedEntity{
 
     @Email

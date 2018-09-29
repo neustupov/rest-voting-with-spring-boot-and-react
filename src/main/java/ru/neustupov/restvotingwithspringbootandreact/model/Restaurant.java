@@ -12,6 +12,8 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "restaurant",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
 public class Restaurant extends AbstractNamedEntity{
 
     @OneToMany(fetch = FetchType.LAZY)

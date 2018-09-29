@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.Set;
@@ -18,10 +15,12 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Menu extends AbstractEntity{
+@Table(name = "menu",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"date", "restaurant_id"}))
+public class Menu extends AbstractEntity {
 
     @NotNull
-    private Date addDate;
+    private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Restaurant restaurant;

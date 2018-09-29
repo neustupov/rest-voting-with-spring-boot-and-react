@@ -44,7 +44,7 @@ class RestaurantsList extends Component{
             return <tr key={restaurant.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{restaurant.name}</td>
                 <td>{restaurant.menus.map(menu => {
-                    return <div key={menu.id}>{menu.addDate}</div>
+                    return <div key={menu.id}>{menu.date}</div>
                 })}</td>
                 <td>
                     <ButtonGroup>
