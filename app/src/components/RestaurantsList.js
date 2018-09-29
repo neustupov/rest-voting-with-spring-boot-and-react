@@ -14,7 +14,7 @@ class RestaurantsList extends Component{
     componentDidMount() {
         this.setState({isLoading: true});
 
-        fetch('/restaurants')
+        fetch('restaurants')
             .then(response => response.json())
             .then(data => this.setState({restaurants: data, isLoading: false}));
     }
