@@ -11,6 +11,7 @@ import ru.neustupov.restvotingwithspringbootandreact.model.Restaurant;
 import ru.neustupov.restvotingwithspringbootandreact.repository.RestaurantRepository;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController("/restaurants")
 public class RestaurantController {
