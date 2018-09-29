@@ -2,6 +2,7 @@ package ru.neustupov.restvotingwithspringbootandreact.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -14,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-class Vote extends AbstractEntity{
+public class Vote extends AbstractEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull

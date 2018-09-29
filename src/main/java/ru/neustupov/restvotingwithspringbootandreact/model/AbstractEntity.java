@@ -7,6 +7,8 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @MappedSuperclass
 class AbstractEntity {
 

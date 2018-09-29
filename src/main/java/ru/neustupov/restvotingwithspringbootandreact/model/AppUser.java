@@ -2,6 +2,7 @@ package ru.neustupov.restvotingwithspringbootandreact.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-class AppUser extends AbstractNamedEntity{
+public class AppUser extends AbstractNamedEntity{
 
     @Email
     @Size(max = 100)

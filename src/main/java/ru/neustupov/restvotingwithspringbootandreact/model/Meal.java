@@ -2,6 +2,7 @@ package ru.neustupov.restvotingwithspringbootandreact.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -13,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-class Meal extends AbstractNamedEntity{
+public class Meal extends AbstractNamedEntity{
 
     @NotNull
     private Integer price;

@@ -14,7 +14,7 @@ class RestaurantsList extends Component{
     componentDidMount() {
         this.setState({isLoading: true});
 
-        fetch('restaurants')
+        fetch('/restaurants')
             .then(response => response.json())
             .then(data => this.setState({restaurants: data, isLoading: false}));
     }
@@ -44,11 +44,7 @@ class RestaurantsList extends Component{
             return <tr key={restaurant.id}>
                 <td style={{whiteSpace: 'nowrap'}}>{restaurant.name}</td>
                 <td>{restaurant.menus.map(menu => {
-                    return <div key={menu.id}>{new Intl.DateTimeFormat('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: '2-digit'
-                    }).format(new Date(menu.addDate))}</div>
+                    return <div key={menu.id}>{menu.addDate}</div>
                 })}</td>
                 <td>
                     <ButtonGroup>

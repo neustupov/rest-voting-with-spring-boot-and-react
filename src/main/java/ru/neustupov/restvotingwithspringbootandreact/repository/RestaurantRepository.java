@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
+    List<Restaurant> findAll();
+
     @EntityGraph(attributePaths = {"menus"}, type = EntityGraph.EntityGraphType.LOAD)
     @Query("SELECT r FROM Restaurant r")
     List<Restaurant> findAllWithMenus();
