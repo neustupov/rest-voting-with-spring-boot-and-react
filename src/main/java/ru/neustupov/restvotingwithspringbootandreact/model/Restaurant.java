@@ -1,23 +1,21 @@
 package ru.neustupov.restvotingwithspringbootandreact.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true, exclude = {"menus"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class Restaurant extends AbstractNamedEntity{
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JsonBackReference
+    @JsonIgnoreProperties("restaurant")
     private Set<Menu> menus;
 
     @OneToMany(fetch = FetchType.LAZY)
