@@ -20,7 +20,7 @@ import java.util.Set;
 @Entity
 @Table(name = "app_user",
         uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
-public class AppUser extends AbstractNamedEntity{
+public class AppUser extends AbstractNamedEntity {
 
     @Email
     @Size(max = 100)
@@ -39,4 +39,10 @@ public class AppUser extends AbstractNamedEntity{
 
     @OneToMany(fetch = FetchType.LAZY)
     private Set<Vote> votes;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+    inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles;
 }
