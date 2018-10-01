@@ -1,19 +1,15 @@
 package ru.neustupov.restvotingwithspringbootandreact.payload;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
 
+@Data
 public class LoginRequest {
 
-    @Getter
-    @Setter
     @NotBlank
     private String usernameOrEmail;
 
-    @Getter
-    @Setter
     @NotBlank
     private String password;
 }
