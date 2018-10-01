@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import ru.neustupov.restvotingwithspringbootandreact.exception.AppException;
+import ru.neustupov.restvotingwithspringbootandreact.model.AppUser;
+import ru.neustupov.restvotingwithspringbootandreact.model.Role;
+import ru.neustupov.restvotingwithspringbootandreact.model.RoleName;
 import ru.neustupov.restvotingwithspringbootandreact.payload.ApiResponse;
 import ru.neustupov.restvotingwithspringbootandreact.payload.JwtAuthenticationResponse;
 import ru.neustupov.restvotingwithspringbootandreact.payload.LoginRequest;
@@ -21,6 +26,8 @@ import ru.neustupov.restvotingwithspringbootandreact.repository.UserRepository;
 import ru.neustupov.restvotingwithspringbootandreact.security.JwtTokenProvider;
 
 import javax.validation.Valid;
+import java.net.URI;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("/auth")
@@ -46,7 +53,7 @@ public class AuthController {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginRequest.getUsernameOrEmail(),
+                        loginRequest.getNameOrEmail(),
                         loginRequest.getPassword()
                 )
         );
@@ -70,8 +77,7 @@ public class AuthController {
         }
 
         // Creating user's account
-        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(), signUpRequest.getPassword());
+        AppUser user = new AppUser(signUpRequest.getName(), signUpRequest.getEmail(), signUpRequest.getPassword());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
@@ -80,11 +86,11 @@ public class AuthController {
 
         user.setRoles(Collections.singleton(userRole));
 
-        User result = userRepository.save(user);
+        AppUser result = userRepository.save(user);
 
         URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/api/users/{username}")
-                .buildAndExpand(result.getUsername()).toUri();
+                .fromCurrentContextPath().path("/users/{username}")
+                .buildAndExpand(result.getName()).toUri();
 
         return ResponseEntity.created(location).body(new ApiResponse(true, "User registered successfully"));
     }

@@ -3,7 +3,6 @@ package ru.neustupov.restvotingwithspringbootandreact.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -15,7 +14,6 @@ import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "app_user",
@@ -24,7 +22,7 @@ public class AppUser extends AbstractNamedEntity {
 
     @Email
     @Size(max = 100)
-    @NotNull
+    @NotBlank
     private String email;
 
     @NotBlank
@@ -45,4 +43,13 @@ public class AppUser extends AbstractNamedEntity {
             joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
+    public AppUser() {
+    }
+
+    public AppUser(String name, String email, String password) {
+        super(name);
+        this.email = email;
+        this.password = password;
+    }
 }
