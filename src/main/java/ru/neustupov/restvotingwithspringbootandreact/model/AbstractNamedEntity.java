@@ -8,7 +8,6 @@ import javax.validation.constraints.Size;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @ToString
 @MappedSuperclass
@@ -17,4 +16,11 @@ class AbstractNamedEntity extends AbstractEntity{
     @NotNull
     @Size(min = 2, max = 100)
     private String name;
+
+    AbstractNamedEntity(){}
+
+    AbstractNamedEntity(Long id, String name){
+        super(id);
+        this.name=name;
+    }
 }

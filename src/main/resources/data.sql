@@ -3,8 +3,8 @@ VALUES (100000, 'ROLE_USER'),
        (100001, 'ROLE_ADMIN');
 
 INSERT INTO app_user (id, name, email, enabled, password, registered)
-VALUES (100002, 'User', 'user@yandex.ru', true, '{noop}password', '2018-09-01'),
-       (100003, 'Admin', 'admin@yandex.ru', true, '{noop}admin', '2018-09-01');
+VALUES (100002, 'User', 'user@yandex.ru', true, 'password', '2018-09-01'),
+       (100003, 'Admin', 'admin@yandex.ru', true, 'admin', '2018-09-01');
 
 INSERT INTO user_role (user_id, role_id)
 VALUES (100002, 100000),

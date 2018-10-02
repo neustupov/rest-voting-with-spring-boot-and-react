@@ -47,6 +47,10 @@ public class AppUser extends AbstractNamedEntity {
     public AppUser() {
     }
 
+    public AppUser(Integer id, String name){
+        super(id, name);
+    }
+
     public AppUser(String name, String email, String password) {
         super(name);
         this.email = email;
