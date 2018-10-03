@@ -11,6 +11,7 @@ VALUES (100002, 'User', 'user@yandex.ru', true, '$2a$04$.IBcD1IdKEKLNCUYM/SkQeOt
 
 INSERT INTO user_role (user_id, role_id)
 VALUES (100002, 100000),
+       (100003, 100000),
        (100003, 100001);
 
 INSERT INTO restaurant (id, name)
