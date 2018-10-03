@@ -2,9 +2,12 @@ INSERT INTO role (id, name)
 VALUES (100000, 'ROLE_USER'),
        (100001, 'ROLE_ADMIN');
 
+/* User password -> password, Admin password -> admin, https://www.devglan.com/online-tools/bcrypt-hash-generator*/
 INSERT INTO app_user (id, name, email, enabled, password, registered)
-VALUES (100002, 'User', 'user@yandex.ru', true, 'password', '2018-09-01'),
-       (100003, 'Admin', 'admin@yandex.ru', true, 'admin', '2018-09-01');
+VALUES (100002, 'User', 'user@yandex.ru', true, '$2a$04$.IBcD1IdKEKLNCUYM/SkQeOtsjws356WSu.rMT2/mGi325KVwmCKG',
+        '2018-09-01'),
+       (100003, 'Admin', 'admin@yandex.ru', true, '$2a$04$vPfBHZ/i5i.DaA/s7dPG3.HZqvH.7RJIft//WdWlnym4I6TOuR1xC',
+        '2018-09-01');
 
 INSERT INTO user_role (user_id, role_id)
 VALUES (100002, 100000),

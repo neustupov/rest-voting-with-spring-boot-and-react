@@ -47,7 +47,7 @@ public class AppUser extends AbstractNamedEntity {
     public AppUser() {
     }
 
-    public AppUser(Integer id, String name){
+    public AppUser(Long id, String name){
         super(id, name);
     }
 
