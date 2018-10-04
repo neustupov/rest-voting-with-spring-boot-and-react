@@ -91,6 +91,7 @@ class Signup extends Component{
                                 autoComplete="off"
                                 placeholder="Your name"
                                 value={this.state.name.value}
+                                onBlur={this.validateNameAvailability}
                                 onChange={(event) => this.handleInputChange(event, this.validateName)} />
                         </FormItem>
                         <FormItem
