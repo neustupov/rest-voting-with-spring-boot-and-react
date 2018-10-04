@@ -38,13 +38,13 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    @GetMapping("/user/checkUsernameAvailability")
-    public UserIdentityAvailability checkUsernameAvailability(@RequestParam(value = "username") String username) {
-        Boolean isAvailable = !userRepository.existsByName(username);
+    @GetMapping("/checkNameAvailability")
+    public UserIdentityAvailability checkNameAvailability(@RequestParam(value = "name") String name) {
+        Boolean isAvailable = !userRepository.existsByName(name);
         return new UserIdentityAvailability(isAvailable);
     }
 
-    @GetMapping("/user/checkEmailAvailability")
+    @GetMapping("/checkEmailAvailability")
     public UserIdentityAvailability checkEmailAvailability(@RequestParam(value = "email") String email) {
         Boolean isAvailable = !userRepository.existsByEmail(email);
         return new UserIdentityAvailability(isAvailable);
