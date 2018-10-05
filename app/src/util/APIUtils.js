@@ -70,3 +70,10 @@ export function getUserProfile(username) {
         method: 'GET'
     });
 }
+
+export function getAllTodaysMenus() {
+    return request({
+        url: API_BASE_URL + "/menus",
+        method: 'GET'
+    })
+}
