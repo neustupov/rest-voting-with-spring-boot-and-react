@@ -1,17 +1,16 @@
 package ru.neustupov.restvotingwithspringbootandreact.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.util.Set;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true, exclude = {"meals"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -23,8 +22,10 @@ public class Menu extends AbstractEntity {
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("menus")
     private Restaurant restaurant;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("menu")
     private Set<Meal> meals;
 }

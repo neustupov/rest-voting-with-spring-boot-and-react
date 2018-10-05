@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Layout, Menu, Dropdown, Icon} from 'antd';
 import {Link, withRouter} from 'react-router-dom';
-import restIcon from "../restaurant.jpg";
 import './AppHeader.css';
 
 const Header = Layout.Header;
@@ -27,11 +26,6 @@ class AppHeader extends Component {
                 <Menu.Item key="/">
                     <Link to="/">
                         <Icon type="home" className="nav-icon"/>
-                    </Link>
-                </Menu.Item>,
-                <Menu.Item key="/restaurants/new">
-                    <Link to="/rstaurants/new">
-                        <img src={restIcon} alt="restaurant" className="poll-icon"/>
                     </Link>
                 </Menu.Item>,
                 <Menu.Item key="/profile" className="profile-menu">
