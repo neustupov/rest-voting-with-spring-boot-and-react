@@ -7,8 +7,8 @@ import ru.neustupov.restvotingwithspringbootandreact.model.Vote;
 
 import java.util.List;
 
-public interface VoteRepository extends JpaRepository<Long, Vote> {
+public interface VoteRepository extends JpaRepository<Vote, Long> {
 
     @Query("SELECT v FROM Vote v WHERE v.date=CURRENT_DATE AND v.restaurant.id=:restId")
-    List<Vote> getAllForCurrentDateAndRestaurant(@Param("restId") long restId);
+    List<Vote> getAllForCurrentDateAndRestaurant(@Param("restId") Long restId);
 }
