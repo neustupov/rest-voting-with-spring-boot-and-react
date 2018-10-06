@@ -1,14 +1,15 @@
 package ru.neustupov.restvotingwithspringbootandreact.repository;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import ru.neustupov.restvotingwithspringbootandreact.model.Vote;
 
 import java.util.List;
 
 public interface VoteRepository extends JpaRepository<Vote, Long> {
 
-    @Query("SELECT v FROM Vote v WHERE v.date=CURRENT_DATE AND v.restaurant.id=:restId")
-    List<Vote> getAllForCurrentDateAndRestaurant(@Param("restId") Long restId);
+    /*@EntityGraph(attributePaths = {"restaurant"}, type = EntityGraph.EntityGraphType.LOAD)*/
+    @Query("select v FROM Vote v WHERE v.date=CURRENT_DATE")
+    List<Vote> getAllForCurrentDate();
 }

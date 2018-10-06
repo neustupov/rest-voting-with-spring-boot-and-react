@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.neustupov.restvotingwithspringbootandreact.model.Meal;
 
+import java.sql.Date;
 import java.util.Set;
 
 @Data
@@ -12,8 +13,10 @@ import java.util.Set;
 @AllArgsConstructor
 public class MenuWithVotes {
 
-    private String nameOfRestaurant;
+    private Long id;
+    private Date date;
     private Long idOfRestaurant;
+    private String nameOfRestaurant;
     private Integer numberOfVotes;
     private Set<Meal> meals;
 
