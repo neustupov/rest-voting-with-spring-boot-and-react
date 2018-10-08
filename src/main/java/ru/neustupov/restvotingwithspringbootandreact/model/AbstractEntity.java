@@ -12,7 +12,7 @@ import javax.persistence.*;
 @MappedSuperclass
 class AbstractEntity {
 
-    private static final int START_SEQ = 100030;
+    private static final int START_SEQ = 100050;
 
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)

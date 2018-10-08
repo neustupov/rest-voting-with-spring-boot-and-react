@@ -21,5 +21,6 @@ public class Restaurant extends AbstractNamedEntity{
     private Set<Menu> menus;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("restaurant")
     private Set<Vote> votes;
 }

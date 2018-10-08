@@ -1,5 +1,6 @@
 package ru.neustupov.restvotingwithspringbootandreact.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,5 +28,6 @@ public class Vote extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
+    @JsonIgnoreProperties("votes")
     private Restaurant restaurant;
 }

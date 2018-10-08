@@ -5,13 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.neustupov.restvotingwithspringbootandreact.model.Menu;
 import ru.neustupov.restvotingwithspringbootandreact.model.Vote;
+import ru.neustupov.restvotingwithspringbootandreact.model.VoteCount;
 import ru.neustupov.restvotingwithspringbootandreact.repository.MenuRepository;
 import ru.neustupov.restvotingwithspringbootandreact.repository.VoteRepository;
 import ru.neustupov.restvotingwithspringbootandreact.to.MenuWithVotes;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import static ru.neustupov.restvotingwithspringbootandreact.utils.menuUtil.menuToMenuWithVotes;
 
@@ -29,6 +29,7 @@ public class MenuServiceImpl implements MenuService {
 
         Collection<Menu> menus = menuRepository.findAllTodaysMenus();
         Collection<Vote> votes = voteRepository.getAllForCurrentDate();
+        /*Collection<VoteCount> voteCounts = voteRepository.getVoteCountForCurrentDate();*/
 
         Collection<MenuWithVotes> menusWithVotes = new ArrayList<>();
 
