@@ -23,11 +23,19 @@ class MenusList extends Component {
             }
         );
 
+        if(!promise) {
+            return;
+        }
+
+        this.setState({
+            isLoading: true
+        });
+
         promise
             .then(response => {
 
                 this.setState({
-                    menus: response.content,
+                    menus: response,
                     isLoading: false
                 })
             }).catch(error => {
@@ -53,10 +61,11 @@ class MenusList extends Component {
 
         return (
             <Row type="flex" justify="space-around">
+                {menusCards}
+                {/*<Col span={4}>col-4</Col>
                 <Col span={4}>col-4</Col>
                 <Col span={4}>col-4</Col>
-                <Col span={4}>col-4</Col>
-                <Col span={4}>col-4</Col>
+                <Col span={4}>col-4</Col>*/}
             </Row>)
     }
 }
