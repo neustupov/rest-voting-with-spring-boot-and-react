@@ -1,8 +1,7 @@
 package ru.neustupov.restvotingwithspringbootandreact.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -13,8 +12,8 @@ import java.util.Date;
 import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
 @AllArgsConstructor
+@Data
 @Entity
 @Table(name = "app_user",
         uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
@@ -36,6 +35,7 @@ public class AppUser extends AbstractNamedEntity {
     private boolean enabled = true;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("appUser")
     private Set<Vote> votes;
 
     @ManyToMany(fetch = FetchType.EAGER)

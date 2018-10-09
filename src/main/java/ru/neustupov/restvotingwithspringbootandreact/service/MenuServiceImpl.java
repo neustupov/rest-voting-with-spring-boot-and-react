@@ -4,7 +4,6 @@ package ru.neustupov.restvotingwithspringbootandreact.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.neustupov.restvotingwithspringbootandreact.model.Menu;
-import ru.neustupov.restvotingwithspringbootandreact.model.Vote;
 import ru.neustupov.restvotingwithspringbootandreact.model.VoteCount;
 import ru.neustupov.restvotingwithspringbootandreact.repository.MenuRepository;
 import ru.neustupov.restvotingwithspringbootandreact.repository.VoteRepository;
@@ -28,17 +27,17 @@ public class MenuServiceImpl implements MenuService {
     public Collection<MenuWithVotes> getAllTodaysMenusWithVotes() {
 
         Collection<Menu> menus = menuRepository.findAllTodaysMenus();
-        Collection<Vote> votes = voteRepository.getAllForCurrentDate();
-        /*Collection<VoteCount> voteCounts = voteRepository.getVoteCountForCurrentDate();*/
+        Collection<VoteCount> voteCounts = voteRepository.getVoteCountForCurrentDate();
 
         Collection<MenuWithVotes> menusWithVotes = new ArrayList<>();
 
         for (Menu menu : menus) {
-            Integer countOfVotes = 0;
 
-            for (Vote vote : votes){
-                if (vote.getRestaurant().getId().equals(menu.getRestaurant().getId())){
-                    countOfVotes ++;
+            int countOfVotes = 0;
+
+            for (VoteCount voteCount : voteCounts){
+                if (voteCount.getRestId().equals(menu.getRestaurant().getId())){
+                    countOfVotes = voteCount.getVoteCount().intValue();
                 }
             }
 

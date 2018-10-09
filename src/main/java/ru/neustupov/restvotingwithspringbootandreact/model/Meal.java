@@ -1,6 +1,6 @@
 package ru.neustupov.restvotingwithspringbootandreact.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,6 +22,6 @@ public class Meal extends AbstractNamedEntity{
     private Integer price;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("meals")
+    @JsonIgnore
     private Menu menu;
 }

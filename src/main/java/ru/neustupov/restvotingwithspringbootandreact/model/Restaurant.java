@@ -1,5 +1,6 @@
 package ru.neustupov.restvotingwithspringbootandreact.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -8,7 +9,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true, exclude = {"menus"})
+@EqualsAndHashCode(callSuper = true, exclude = {"menus", "votes"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,6 +22,6 @@ public class Restaurant extends AbstractNamedEntity{
     private Set<Menu> menus;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties("restaurant")
+    @JsonIgnore
     private Set<Vote> votes;
 }
