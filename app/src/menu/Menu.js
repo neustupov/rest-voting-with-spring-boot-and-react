@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import { Card } from 'antd';
+import React, {Component} from 'react';
+import {Card} from 'antd';
 
-class Menu extends Component{
+class Menu extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-
     }
 
-    render(){
-        <Card
-            title="Card title"
-            extra={<a href="#">More</a>}
-            style={{ width: 300 }}
-        >
-            <p>Card content</p>
-            <p>Card content</p>
-            <p>Card content</p>
-        </Card>
+    render() {
+        return (
+            <Card
+                title={this.props.menu.nameOfRestaurant}
+                extra={<a href="#">More</a>}
+                style={{width: 300}}
+            >
+                <p>{this.props.menu.meals(1).name}</p>
+                <p>Card content</p>
+                <p>Card content</p>
+            </Card>)
     }
 }
 

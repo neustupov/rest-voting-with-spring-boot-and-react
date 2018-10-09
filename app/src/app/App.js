@@ -16,6 +16,7 @@ import LoadingIndicator from '../common/LoadingIndicator';
 import AppHeader from '../common/AppHeader';
 
 import {Layout, notification} from 'antd';
+import MenusList from "../menu/TodaysMenusList";
 
 const {Content} = Layout;
 
@@ -101,13 +102,17 @@ class App extends Component {
                 <Content className="app-content">
                     <div className="container">
                         <Switch>
-                            {/*<Route exact path="/"
-                                   render={(props) => <PollList isAuthenticated={this.state.isAuthenticated}
-                                                                currentUser={this.state.currentUser} handleLogout={this.handleLogout} {...props} />}>
-                            </Route>*/}
+                            <Route exact path="/"
+                                   render={(props) =>
+                                       <MenusList isAuthenticated={this.state.isAuthenticated}
+                                                  currentUser={this.state.currentUser}
+                                                  handleLogout={this.handleLogout} {...props} />}>
+                            </Route>
                             <Route path="/login"
-                                   render={(props) => <Login onLogin={this.handleLogin} {...props} />}></Route>
-                            <Route path="/signup" component={Signup}></Route>
+                                   render={(props) =>
+                                       <Login onLogin={this.handleLogin} {...props}/>}>
+                            </Route>
+                            <Route path="/signup" component={Signup}/>
                             {/*<Route path="/users/:username"
                                    render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
                             </Route>*/}
