@@ -14,6 +14,7 @@ import Signup from '../user/signup/Signup';
 import LoadingIndicator from '../common/LoadingIndicator';
 
 import AppHeader from '../common/AppHeader';
+import HomePage from '../components/Home';
 
 import {Layout, notification} from 'antd';
 import MenusList from "../menu/TodaysMenusList";
@@ -104,9 +105,11 @@ class App extends Component {
                         <Switch>
                             <Route exact path="/"
                                    render={(props) =>
-                                       <MenusList isAuthenticated={this.state.isAuthenticated}
-                                                  currentUser={this.state.currentUser}
-                                                  handleLogout={this.handleLogout} {...props} />}>
+                                       this.state.isAuthenticated === true ?
+                                           <MenusList isAuthenticated={this.state.isAuthenticated}
+                                                      currentUser={this.state.currentUser}
+                                                      handleLogout={this.handleLogout} {...props} />
+                                           : <HomePage/>}>
                             </Route>
                             <Route path="/login"
                                    render={(props) =>
@@ -127,4 +130,4 @@ class App extends Component {
     }
 }
 
-export default App;
+export default withRouter(App);
