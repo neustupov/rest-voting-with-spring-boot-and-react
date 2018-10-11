@@ -24,7 +24,6 @@ public class UserPrincipal implements UserDetails {
     private String name;
 
     @Getter
-    @JsonIgnore
     private String email;
 
     @JsonIgnore

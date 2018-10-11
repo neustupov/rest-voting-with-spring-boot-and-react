@@ -28,6 +28,7 @@ import ru.neustupov.restvotingwithspringbootandreact.security.JwtTokenProvider;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Collections;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/auth")
@@ -85,6 +86,8 @@ public class AuthController {
                 .orElseThrow(() -> new AppException("User Role not set."));
 
         user.setRoles(Collections.singleton(userRole));
+
+        user.setRegistered(new Date());
 
         AppUser result = userRepository.save(user);
 

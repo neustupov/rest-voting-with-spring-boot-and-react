@@ -25,7 +25,12 @@ class AppHeader extends Component {
             menuItems = [
                 <Menu.Item key="/">
                     <Link to="/">
-                        <Icon type="home" className="nav-icon"/>
+                        <Icon type="home" style={{ fontSize: 24, color: '#08c' }}/>
+                    </Link>
+                </Menu.Item>,
+                <Menu.Item key="/users">
+                    <Link to="/users">
+                        <Icon type="bars" style={{ fontSize: 24, color: '#08c' }}/>
                     </Link>
                 </Menu.Item>,
                 <Menu.Item key="/profile" className="profile-menu">
@@ -71,13 +76,10 @@ function ProfileDropdownMenu(props) {
                 <div className="user-full-name-info">
                     {props.currentUser.name}
                 </div>
-                <div className="username-info">
-                    @{props.currentUser.username}
-                </div>
             </Menu.Item>
             <Menu.Divider/>
             <Menu.Item key="profile" className="dropdown-item">
-                <Link to={`/users/${props.currentUser.username}`}>Profile</Link>
+                <Link to={`/users/${props.currentUser.name}`}>Profile</Link>
             </Menu.Item>
             <Menu.Item key="logout" className="dropdown-item">
                 Logout
@@ -91,7 +93,7 @@ function ProfileDropdownMenu(props) {
             trigger={['click']}
             getPopupContainer={() => document.getElementsByClassName('profile-menu')[0]}>
             <a className="ant-dropdown-link">
-                <Icon type="user" className="nav-icon" style={{marginRight: 0}}/> <Icon type="down"/>
+                <Icon type="user" className="nav-icon" style={{ fontSize: 24, color: '#08c' }}/> <Icon type="down"/>
             </a>
         </Dropdown>
     );

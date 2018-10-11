@@ -1,9 +1,6 @@
 package ru.neustupov.restvotingwithspringbootandreact.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -18,4 +15,9 @@ public class Role extends AbstractEntity{
 
     @Enumerated(EnumType.STRING)
     private RoleName name;
+
+    @Override
+    public String toString() {
+        return " " + name + " " ;
+    }
 }

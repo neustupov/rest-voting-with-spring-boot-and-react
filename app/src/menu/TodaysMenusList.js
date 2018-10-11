@@ -27,10 +27,6 @@ class MenusList extends Component {
             return;
         }
 
-        this.setState({
-            isLoading: true
-        });
-
         promise
             .then(response => {
 

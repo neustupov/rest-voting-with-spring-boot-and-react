@@ -29,7 +29,7 @@ public class AppUser extends AbstractNamedEntity {
     private String password;
 
     @NotNull
-    private Date registered = new Date();
+    private Date registered;
 
     @NotNull
     private boolean enabled = true;
@@ -55,5 +55,13 @@ public class AppUser extends AbstractNamedEntity {
         super(name);
         this.email = email;
         this.password = password;
+    }
+    
+    public AppUser(Long id, String name, String email, Date registered, boolean enabled, Set<Role> roles){
+        super(id, name);
+        this.email = email;
+        this.enabled = enabled;
+        this.registered = registered;
+        this.roles = roles;
     }
 }

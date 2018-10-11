@@ -15,9 +15,11 @@ import LoadingIndicator from '../common/LoadingIndicator';
 
 import AppHeader from '../common/AppHeader';
 import HomePage from '../components/Home';
+import Profile from '../user/profile/Profile';
+import MenusList from "../menu/TodaysMenusList";
+import UsersList from "../user/UsersList";
 
 import {Layout, notification} from 'antd';
-import MenusList from "../menu/TodaysMenusList";
 
 const {Content} = Layout;
 
@@ -74,14 +76,14 @@ class App extends Component {
         this.props.history.push(redirectTo);
 
         notification[notificationType]({
-            message: 'Polling App',
+            message: 'Rest Voting App',
             description: description,
         });
     }
 
     handleLogin() {
         notification.success({
-            message: 'Polling App',
+            message: 'Rest Voting App',
             description: "You're successfully logged in.",
         });
         this.loadCurrentUser();
@@ -116,9 +118,10 @@ class App extends Component {
                                        <Login onLogin={this.handleLogin} {...props}/>}>
                             </Route>
                             <Route path="/signup" component={Signup}/>
-                            {/*<Route path="/users/:username"
-                                   render={(props) => <Profile isAuthenticated={this.state.isAuthenticated} currentUser={this.state.currentUser} {...props}  />}>
-                            </Route>*/}
+                            <Route path="/users/:name"
+                                   render={(props) => <Profile isAuthenticated={this.state.isAuthenticated}
+                                                               currentUser={this.state.currentUser} {...props}  />}/>
+                            <Route path="/users" component={UsersList}/>
                             {/*<PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new"
                                           component={NewPoll} handleLogout={this.handleLogout}></PrivateRoute>*/}
                             {/*<Route component={NotFound}></Route>*/}

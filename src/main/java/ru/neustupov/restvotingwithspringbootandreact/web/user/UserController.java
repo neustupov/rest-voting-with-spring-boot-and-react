@@ -4,17 +4,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.neustupov.restvotingwithspringbootandreact.exception.ResourceNotFoundException;
 import ru.neustupov.restvotingwithspringbootandreact.model.AppUser;
 import ru.neustupov.restvotingwithspringbootandreact.payload.UserIdentityAvailability;
+import ru.neustupov.restvotingwithspringbootandreact.payload.UserProfile;
 import ru.neustupov.restvotingwithspringbootandreact.repository.UserRepository;
 import ru.neustupov.restvotingwithspringbootandreact.security.CurrentUser;
 import ru.neustupov.restvotingwithspringbootandreact.security.UserPrincipal;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -25,17 +26,35 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/me")
-    @PreAuthorize("hasRole('USER')")
-    public AppUser getCurrentUser(@CurrentUser UserPrincipal currentUser) {
-        return new AppUser(currentUser.getId(), currentUser.getName());
-    }
-
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    Collection<AppUser> getAllUsers(){
+    Collection<UserProfile> getAllUsers() {
         log.info("Request to get all users");
-        return userRepository.findAll();
+
+        List<AppUser> appUserList = userRepository.findAll();
+        List<UserProfile> userProfileList = new ArrayList<>();
+
+        for (AppUser appUser:appUserList) {
+            userProfileList.add(new UserProfile(appUser.getId(), appUser.getName(), appUser.getEmail(),
+                    appUser.getRegistered(), appUser.isEnabled(), appUser.getRoles().toString()));
+        }
+
+        return userProfileList;
+    }
+
+    @GetMapping("/me")
+    @PreAuthorize("hasRole('USER')")
+    public UserPrincipal getCurrentUser(@CurrentUser UserPrincipal currentUser) {
+        return currentUser;
+    }
+
+    @GetMapping("/{name}")
+    public UserProfile getUserProfile(@PathVariable(value = "name") String name) {
+        AppUser appUser = userRepository.findByNameOrEmail(name, name)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "name", name));
+
+        return new UserProfile(appUser.getId(), appUser.getName(), appUser.getEmail(), appUser.getRegistered(),
+                appUser.isEnabled(), appUser.getRoles().toString());
     }
 
     @GetMapping("/checkNameAvailability")

@@ -53,6 +53,13 @@ export function checkEmailAvailability(email) {
     });
 }
 
+export function getAllUsers() {
+    return request({
+        url: API_BASE_URL + "/users",
+        method: 'GET'
+    })
+}
+
 export function getCurrentUser() {
     if(!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
@@ -64,9 +71,9 @@ export function getCurrentUser() {
     });
 }
 
-export function getUserProfile(username) {
+export function getUserProfile(name) {
     return request({
-        url: API_BASE_URL + "/users/" + username,
+        url: API_BASE_URL + "/users/" + name,
         method: 'GET'
     });
 }
