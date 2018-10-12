@@ -1,11 +1,11 @@
-import { API_BASE_URL, ACCESS_TOKEN } from '../constants';
+import {API_BASE_URL, ACCESS_TOKEN} from '../constants';
 
 const request = (options) => {
     const headers = new Headers({
         'Content-Type': 'application/json',
     });
 
-    if(localStorage.getItem(ACCESS_TOKEN)) {
+    if (localStorage.getItem(ACCESS_TOKEN)) {
         headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
     }
 
@@ -14,12 +14,13 @@ const request = (options) => {
 
     return fetch(options.url, options)
         .then(response =>
-            response.json().then(json => {
-                if(!response.ok) {
-                    return Promise.reject(json);
-                }
-                return json;
-            })
+            response.json()
+                .then(json => {
+                    if (!response.ok) {
+                        return Promise.reject(json);
+                    }
+                    return json;
+                })
         );
 };
 
@@ -61,7 +62,7 @@ export function getAllUsers() {
 }
 
 export function getCurrentUser() {
-    if(!localStorage.getItem(ACCESS_TOKEN)) {
+    if (!localStorage.getItem(ACCESS_TOKEN)) {
         return Promise.reject("No access token set.");
     }
 
@@ -82,5 +83,12 @@ export function getAllTodaysMenus() {
     return request({
         url: API_BASE_URL + "/menus",
         method: 'GET'
+    })
+}
+
+export function setEnabled(name, enabled) {
+    return request({
+        url: API_BASE_URL + "/users/" + name + "?enabled=" + enabled,
+        method: 'POST'
     })
 }

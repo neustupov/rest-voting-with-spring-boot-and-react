@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getAllUsers} from "../util/APIUtils";
+import {getAllUsers, setEnabled} from '../util/APIUtils';
 
 import {Table, Icon, Checkbox, Divider} from 'antd';
 
@@ -10,7 +10,9 @@ class UsersList extends Component {
         this.state = {
             users: [],
             isLoading: false
-        }
+        };
+
+        this.onChange = this.onChange.bind(this);
     }
 
     loadUsersList() {
@@ -44,6 +46,10 @@ class UsersList extends Component {
         this.loadUsersList();
     }
 
+    onChange(e) {
+        setEnabled(e.target.value, e.target.checked);
+    }
+
     render() {
 
         const columns = [{
@@ -67,7 +73,7 @@ class UsersList extends Component {
             dataIndex: 'enabled',
             key: 'enabled',
             render: (text, record) => (
-                <Checkbox checked={record.enabled}/>
+                <Checkbox checked={record.enabled} onChange={this.onChange} value={record.name}/>
             )
         }, {
             title: 'Roles',
