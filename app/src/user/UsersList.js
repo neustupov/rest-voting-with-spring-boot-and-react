@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {getAllUsers, setEnabled} from '../util/APIUtils';
 
-import {Table, Icon, Checkbox, Divider} from 'antd';
+import './UsersList.css';
+
+import {Table, Icon, Checkbox, notification, Divider} from 'antd';
 
 class UsersList extends Component {
 
@@ -48,6 +50,10 @@ class UsersList extends Component {
 
     onChange(e) {
         setEnabled(e.target.value, e.target.checked);
+        notification.success({
+            message: 'Successfully',
+            description: "enabled field of " + e.target.value + " change to " + e.target.checked,
+        })
     }
 
     render() {
