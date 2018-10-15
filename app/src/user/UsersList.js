@@ -81,7 +81,7 @@ class UsersList extends Component {
             dataIndex: 'enabled',
             key: 'enabled',
             render: (text, record) => (
-                <Checkbox defaultChecked={record.enabled}
+                <Checkbox checked={record.enabled}
                           onChange={this.onChange}
                           value={record.name}/>
             )
