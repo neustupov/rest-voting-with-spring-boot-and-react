@@ -14,6 +14,11 @@ public class UserServiceImpl implements UserService{
     private UserRepository userRepository;
 
     @Override
+    public boolean delete(String name, String email) {
+        return userRepository.deleteByNameOrEmail(name, email) != 0;
+    }
+
+    @Override
     @Transactional
     public void enable(String name, boolean enabled) {
         AppUser user = userRepository.findByNameOrEmail(name, name)

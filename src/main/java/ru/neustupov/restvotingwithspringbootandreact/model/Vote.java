@@ -2,6 +2,8 @@ package ru.neustupov.restvotingwithspringbootandreact.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -17,6 +19,7 @@ import java.util.Date;
 public class Vote extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     @JsonIgnore
     private AppUser appUser;
@@ -25,6 +28,7 @@ public class Vote extends AbstractEntity {
     private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @NotNull
     @JsonIgnore
     private Restaurant restaurant;

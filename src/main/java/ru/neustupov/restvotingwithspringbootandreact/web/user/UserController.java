@@ -64,6 +64,13 @@ public class UserController {
                 appUser.isEnabled(), appUser.getRoles().toString());
     }
 
+    @DeleteMapping(value = "/{nameOrEmail}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("nameOrEmail") String nameOrEmail) {
+        log.info("Request to delete user : " + nameOrEmail);
+        userService.delete(nameOrEmail, nameOrEmail);
+    }
+
     @GetMapping("/checkNameAvailability")
     public UserIdentityAvailability checkNameAvailability(@RequestParam(value = "name") String name) {
         Boolean isAvailable = !userRepository.existsByName(name);

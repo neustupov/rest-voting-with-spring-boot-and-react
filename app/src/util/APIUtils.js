@@ -92,3 +92,10 @@ export function setEnabled(name, enabled) {
         method: 'POST'
     })
 }
+
+export function deleteUser(nameOrEmail) {
+    return request({
+        url: API_BASE_URL + "/users/" + nameOrEmail,
+        method: 'DELETE'
+    })
+}

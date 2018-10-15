@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {getAllUsers, setEnabled} from '../util/APIUtils';
+import {getAllUsers, setEnabled, deleteUser} from '../util/APIUtils';
 
 import './UsersList.css';
 
-import {Table, Icon, Checkbox, notification, Divider} from 'antd';
+import {Table, Button, Checkbox, notification} from 'antd';
 
 class UsersList extends Component {
 
@@ -31,7 +31,6 @@ class UsersList extends Component {
 
         promise
             .then(response => {
-
                 this.setState({
                     users: response,
                     isLoading: false
@@ -41,7 +40,6 @@ class UsersList extends Component {
                 isLoading: false
             })
         });
-
     }
 
     componentDidMount() {
@@ -49,11 +47,15 @@ class UsersList extends Component {
     }
 
     onChange(e) {
-        setEnabled(e.target.value, e.target.checked);
+        setEnabled(e.target.value, e.target.checked).then(this.loadUsersList());
         notification.success({
             message: 'Successfully',
-            description: "enabled field of " + e.target.value + " change to " + e.target.checked,
-        })
+            description: "Enabled field of " + e.target.value + " change to " + e.target.checked,
+        });
+    }
+
+    handleDelete(e){
+        deleteUser(e.target.value)
     }
 
     render() {
@@ -79,7 +81,9 @@ class UsersList extends Component {
             dataIndex: 'enabled',
             key: 'enabled',
             render: (text, record) => (
-                <Checkbox defaultChecked={record.enabled} onChange={this.onChange} value={record.name}/>
+                <Checkbox defaultChecked={record.enabled}
+                          onChange={this.onChange}
+                          value={record.name}/>
             )
         }, {
             title: 'Roles',
@@ -90,19 +94,16 @@ class UsersList extends Component {
             key: 'action',
             render: (text, record) => (
                 <div>
-                    <a href="#">
-                        <Icon type="edit" theme="outlined" style={{fontSize: '24px'}}/>
-                    </a>
-                    <Divider type="vertical"/>
-                    <a href="#">
-                        <Icon type="delete" theme="outlined" style={{fontSize: '24px'}}/>
-                    </a>
+                    <Button shape="circle" icon="delete" onClick={this.handleDelete} value={record.name}/>
                 </div>
             ),
         }];
 
         return (
-            <Table rowKey='id' columns={columns} dataSource={this.state.users}/>
+            <Table rowClassName={(row) => row.enabled ? '' : 'disabled'}
+                   rowKey='id' columns={columns}
+                   dataSource={this.state.users}
+                   loading={this.state.isLoading}/>
         )
     }
 }
