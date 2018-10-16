@@ -14,5 +14,6 @@ public class RestaurantWithTodaysMenu {
 
     private Long id;
     private String name;
+    private Integer numberOfVotes;
     private List<Meal> mealsFromTodaysMenu;
 }

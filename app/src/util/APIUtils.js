@@ -86,6 +86,13 @@ export function getAllTodaysMenus() {
     })
 }
 
+export function getAllRestaurantsWithTodaysMenus() {
+    return request({
+        url: API_BASE_URL + "/restaurants",
+        method: 'GET'
+    })
+}
+
 export function setEnabled(name, enabled) {
     return request({
         url: API_BASE_URL + "/users/" + name + "?enabled=" + enabled,

@@ -14,12 +14,12 @@ import Signup from '../user/signup/Signup';
 import LoadingIndicator from '../common/LoadingIndicator';
 
 import AppHeader from '../common/AppHeader';
-import HomePage from '../components/Home';
+import HomePage from '../common/Home';
 import Profile from '../user/profile/Profile';
-import MenusList from "../menu/TodaysMenusList";
 import UsersList from "../user/UsersList";
 
 import {Layout, notification} from 'antd';
+import RestaurantsList from "../restaurants/RestaurantsList";
 
 const {Content} = Layout;
 
@@ -108,7 +108,7 @@ class App extends Component {
                             <Route exact path="/"
                                    render={(props) =>
                                        this.state.isAuthenticated === true ?
-                                           <MenusList isAuthenticated={this.state.isAuthenticated}
+                                           <RestaurantsList isAuthenticated={this.state.isAuthenticated}
                                                       currentUser={this.state.currentUser}
                                                       handleLogout={this.handleLogout} {...props} />
                                            : <HomePage/>}>
