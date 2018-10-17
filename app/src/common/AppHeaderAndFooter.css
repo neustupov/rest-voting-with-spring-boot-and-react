@@ -9,15 +9,32 @@
     display: inline-block;
 }
 
+.app-footer a {
+    text-decoration: none;
+    line-height: 42px;
+    font-size: 15px;
+    display: inline-block;
+}
+
 .app-title a:hover {
     text-decoration: none;
 }
 
 .app-header {
-    /*position: fixed;*/
+      /*position: fixed;*/
+      width: 100%;
+      box-shadow: 0 3px 8px #f0f1f2;
+      z-index: 10;
+      padding: 0;
+}
+
+.app-footer {
+    position: fixed;
+    background-color: #ffffff;
+    bottom: 0;
     width: 100%;
-    box-shadow: 0 3px 8px #f0f1f2;
-    z-index: 10;
+    box-shadow: 0 -3px 8px #f0f1f2;
+    z-index: 20;
     padding: 0;
 }
 

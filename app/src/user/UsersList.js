@@ -48,13 +48,14 @@ class UsersList extends Component {
 
     onChange(e) {
         setEnabled(e.target.value, e.target.checked).then(this.loadUsersList());
+
         notification.success({
             message: 'Successfully',
             description: "Enabled field of " + e.target.value + " change to " + e.target.checked,
         });
     }
 
-    handleDelete(e){
+    handleDelete(e) {
         deleteUser(e.target.value)
     }
 

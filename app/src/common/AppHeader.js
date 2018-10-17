@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Layout, Menu, Dropdown, Icon} from 'antd';
 import {Link, withRouter} from 'react-router-dom';
-import './AppHeader.css';
+import './AppHeaderAndFooter.css';
 
 const Header = Layout.Header;
 

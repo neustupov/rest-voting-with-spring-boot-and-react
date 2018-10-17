@@ -20,6 +20,7 @@ import UsersList from "../user/UsersList";
 
 import {Layout, notification} from 'antd';
 import RestaurantsList from "../restaurants/RestaurantsList";
+import AppFooter from "../common/AppFooter";
 
 const {Content} = Layout;
 
@@ -109,8 +110,8 @@ class App extends Component {
                                    render={(props) =>
                                        this.state.isAuthenticated === true ?
                                            <RestaurantsList isAuthenticated={this.state.isAuthenticated}
-                                                      currentUser={this.state.currentUser}
-                                                      handleLogout={this.handleLogout} {...props} />
+                                                            currentUser={this.state.currentUser}
+                                                            handleLogout={this.handleLogout} {...props}/>
                                            : <HomePage/>}>
                             </Route>
                             <Route path="/login"
@@ -119,7 +120,8 @@ class App extends Component {
                             </Route>
                             <Route path="/signup" component={Signup}/>
                             <Route path="/users/:name"
-                                   render={(props) => <Profile isAuthenticated={this.state.isAuthenticated}
+                                   render={(props) => <Profile style={{margin: '32px 0'}}
+                                                               isAuthenticated={this.state.isAuthenticated}
                                                                currentUser={this.state.currentUser} {...props}  />}/>
                             <Route path="/users" component={UsersList}/>
                             {/*<PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new"
@@ -128,6 +130,7 @@ class App extends Component {
                         </Switch>
                     </div>
                 </Content>
+                <AppFooter/>
             </Layout>
         );
     }
