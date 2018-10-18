@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Row, Col } from 'antd';
+import {Row, Col} from 'antd';
 
 class Meal extends Component {
 
@@ -12,9 +12,6 @@ class Meal extends Component {
         return (
             <div>
                 <Row type="flex" justify="start">
-                    <Col span={8}>
-                    <div>{this.props.id}</div>
-                    </Col>
                     <Col span={8}>
                         <div>{this.props.name}</div>
                     </Col>

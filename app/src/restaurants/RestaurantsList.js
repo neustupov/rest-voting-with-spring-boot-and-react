@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {getAllRestaurantsWithTodaysMenus} from '../util/APIUtils';
 import {List, Avatar, Icon} from "antd";
 
+import MealsList from '../meal/MealsList.js';
+
 class RestaurantsList extends Component {
 
     constructor(props) {
@@ -48,7 +50,7 @@ class RestaurantsList extends Component {
 
         const IconText = ({type, text}) => (
             <div>
-                <Icon type={type} style={{marginRight: 8}}/>
+                <Icon type={type} style={{fontSize: 24, marginRight: 8}}/>
                 {text}
             </div>
         );
@@ -60,24 +62,31 @@ class RestaurantsList extends Component {
                   size="small"
                   pagination={{
                       onChange: (page) => {
-                          console.log(page);
+                          this.setState({
+                              restaurants: this.loadRestaurantsList()
+                          });
                       },
                       pageSize: 2,
                   }}
+
                   dataSource={restaurants}
 
                   renderItem={item => (
+
                       <List.Item
                           key={item.id}
-                          actions={[<IconText type="star-o" text="156"/>]}
+                          actions={[<IconText type="star-o" text={item.numberOfVotes}/>]}
                           extra={<img width={272} alt="logo"
                                       src="http://saltonlineordering.com/uploads/7/3/8/9/73898955/editor/sogbu-restaurant-logo-5.png?1497391256"/>}
                       >
+
                           <List.Item.Meta avatar={<Avatar src={item.avatar}/>}
-                                          title={<a href={item.href}>{item.name}</a>}
-                                          description={item.id}
+                                          title={<a href={item.href}><h2>{item.name}</h2></a>}
+                                          description="Menu for today"
                           />
-                          {item.numberOfVotes}
+
+                          <MealsList meals={item.mealsFromTodaysMenu}/>
+
                       </List.Item>
                   )}/>)
     }

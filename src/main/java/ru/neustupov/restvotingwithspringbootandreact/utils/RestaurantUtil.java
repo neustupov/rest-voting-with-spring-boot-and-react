@@ -7,6 +7,7 @@ import ru.neustupov.restvotingwithspringbootandreact.to.RestaurantWithTodaysMenu
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class RestaurantUtil {
@@ -34,6 +35,14 @@ public class RestaurantUtil {
                 if (restaurant.getId().equals(menu.getRestaurant().getId())) {
                     restaurantWithMeal.setMealsFromTodaysMenu(new ArrayList<>(menu.getMeals()));
                 }
+            }
+
+            if (restaurantWithMeal.getNumberOfVotes() == null) {
+                restaurantWithMeal.setNumberOfVotes(0);
+            }
+
+            if(restaurantWithMeal.getMealsFromTodaysMenu() == null) {
+                restaurantWithMeal.setMealsFromTodaysMenu(Collections.emptyList());
             }
 
             restaurantWithTodaysMenus.add(restaurantWithMeal);
