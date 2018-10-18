@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Card, Checkbox, Row} from 'antd';
+import {Card, Row} from 'antd';
 import {getCurrentUser} from '../../util/APIUtils';
 import LoadingIndicator from '../../common/LoadingIndicator';
 import './Profile.css';
 import {withRouter} from 'react-router-dom';
-import {formatDateTime} from '../../util/Helpers';
 
 
 class Profile extends Component {

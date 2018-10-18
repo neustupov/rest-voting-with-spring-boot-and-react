@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {getAllTodaysMenus} from '../util/APIUtils';
 import Menu from './Menu';
-import {Col, Row} from 'antd';
+import {Row} from 'antd';
 import {withRouter} from 'react-router-dom';
 
 class MenusList extends Component {
@@ -57,10 +57,6 @@ class MenusList extends Component {
         return (
             <Row type="flex" justify="space-around">
                 {menusCards}
-                {/*<Col span={4}>col-4</Col>
-                <Col span={4}>col-4</Col>
-                <Col span={4}>col-4</Col>
-                <Col span={4}>col-4</Col>*/}
             </Row>)
     }
 }

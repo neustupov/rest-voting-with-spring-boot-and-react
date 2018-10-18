@@ -10,7 +10,9 @@ class AppFooter extends Component {
     render() {
         return (
             <Footer className="app-footer">
-                        <Link to="/">Maven/ Spring Boot / Security/ JPA(Hibernate)/ Jackson/ React application</Link>
+                <div className="container">
+                    <Link to="/">Maven/ Spring Boot / Security/ JPA(Hibernate)/ Jackson/ React application</Link>
+                </div>
             </Footer>
         );
     }
