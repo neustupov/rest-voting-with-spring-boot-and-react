@@ -106,3 +106,10 @@ export function deleteUser(nameOrEmail) {
         method: 'DELETE'
     })
 }
+
+export function voting(restId, userId) {
+    return request({
+        url: API_BASE_URL + "/users/" + nameOrEmail,
+        method: 'DELETE'
+    })
+}

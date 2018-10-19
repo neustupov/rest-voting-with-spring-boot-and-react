@@ -11,7 +11,8 @@ class RestaurantsList extends Component {
         this.state = {
             restaurants: [],
             isLoading: false
-        }
+        };
+        this.voting=this.voting.bind(this)
     }
 
     loadRestaurantsList() {
@@ -44,13 +45,17 @@ class RestaurantsList extends Component {
     componentDidMount() {
         this.loadRestaurantsList();
     }
+    
+    voting(){
+        
+    }
 
     render() {
         const {restaurants} = this.state;
 
-        const IconText = ({type, text}) => (
+        const IconText = ({type, text, restId}) => (
             <div>
-                <Icon type={type} style={{fontSize: 24, marginRight: 8}}/>
+                <Icon type={type} style={{fontSize: 24, marginRight: 8}} onClick={this.voting(restId)}/>
                 {text}
             </div>
         );
@@ -75,7 +80,7 @@ class RestaurantsList extends Component {
 
                       <List.Item
                           key={item.id}
-                          actions={[<IconText type="star-o" text={item.numberOfVotes}/>]}
+                          actions={[<IconText type="star-o" text={item.numberOfVotes} restId={item.id}/>]}
                           extra={<img width={272} alt="logo"
                                       src="http://saltonlineordering.com/uploads/7/3/8/9/73898955/editor/sogbu-restaurant-logo-5.png?1497391256"/>}
                       >

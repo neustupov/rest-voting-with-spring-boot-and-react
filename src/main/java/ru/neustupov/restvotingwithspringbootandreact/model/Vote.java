@@ -32,4 +32,8 @@ public class Vote extends AbstractEntity {
     @NotNull
     @JsonIgnore
     private Restaurant restaurant;
+
+    public Vote(Date date) {
+        this.date = date;
+    }
 }
