@@ -107,9 +107,10 @@ export function deleteUser(nameOrEmail) {
     })
 }
 
-export function voting(restId, userId) {
+export function voting(voteTo) {
     return request({
-        url: API_BASE_URL + "/users/" + nameOrEmail,
-        method: 'DELETE'
+        url: API_BASE_URL + "/votes",
+        method: 'POST',
+        body: JSON.stringify(voteTo)
     })
 }
