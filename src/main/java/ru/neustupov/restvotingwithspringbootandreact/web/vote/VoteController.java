@@ -5,11 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.neustupov.restvotingwithspringbootandreact.model.Vote;
 import ru.neustupov.restvotingwithspringbootandreact.service.VoteService;
+import ru.neustupov.restvotingwithspringbootandreact.to.VoteTo;
 
 import java.net.URI;
 import java.time.LocalTime;
@@ -26,11 +26,11 @@ public class VoteController {
     private VoteService voteService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Vote> createWithLocation(@RequestBody Vote vote) {
+    public ResponseEntity<Vote> createWithLocation(@RequestBody VoteTo voteTo) {
 
         log.info("Request to create vote");
 
-        Vote created = voteService.save(vote);
+        Vote created = voteService.save(voteTo);
 
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("votes/{id}")
