@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {getAllRestaurantsWithTodaysMenus} from '../util/APIUtils';
+import {getAllRestaurantsWithTodaysMenus, voting} from '../util/APIUtils';
 import {List, Avatar, Icon} from "antd";
 
 import MealsList from '../meal/MealsList.js';
@@ -46,8 +46,14 @@ class RestaurantsList extends Component {
         this.loadRestaurantsList();
     }
     
-    voting(){
-        
+    voting(restId){
+        const voteTo = {
+            usrId: this.props.currentUser.getId,
+            date: new Date(),
+            restId: restId
+        };
+
+        voting(voteTo)
     }
 
     render() {
