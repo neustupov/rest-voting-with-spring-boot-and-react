@@ -36,7 +36,7 @@ public class RestaurantController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteGroup(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         log.info("Request to delete restaurant: {}", id);
         restaurantRepository.deleteById(id);
         return ResponseEntity.ok().build();
