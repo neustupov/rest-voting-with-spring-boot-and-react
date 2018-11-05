@@ -7,6 +7,7 @@ import ru.neustupov.restvotingwithspringbootandreact.model.Vote;
 import ru.neustupov.restvotingwithspringbootandreact.repository.RestaurantRepository;
 import ru.neustupov.restvotingwithspringbootandreact.repository.UserRepository;
 import ru.neustupov.restvotingwithspringbootandreact.repository.VoteRepository;
+import ru.neustupov.restvotingwithspringbootandreact.to.VoteTo;
 
 @Service
 public class VoteServiceImpl implements VoteService {
@@ -26,14 +27,13 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public Vote save(Vote vote) {
+    public Vote save(VoteTo voteTo) {
 
-        try {
-            if(get(vote.getId()) != null)
+        Vote vote = new Vote();
+        vote.setRestaurant(restaurantRepository.getOne(voteTo.getRestId()));
+        vote.setAppUser(userRepository.getOne(voteTo.getUserId()));
+        vote.setDate(voteTo.getDate());
 
-            return voteRepository.save(vote);
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        }
+        return voteRepository.save(vote);
     }
 }
